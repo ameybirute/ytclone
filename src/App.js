@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ytv from './ytv.png';
+import ytm from './ytm.png';
 import './App.css';
+import Button from './Mainbutton.js';
 
 function App() {
+  const [imageSrc, setImageSrc] = useState(ytv);
+
+  const handleMouseEnterButton1 = () => {
+    setImageSrc(ytv);
+  };
+
+  const handleMouseEnterButton2 = () => {
+    setImageSrc(ytm);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <img style={{ height: "120px",width:"120px" }} src={imageSrc} alt="Logo" />
+      <Button onMouseEnter={handleMouseEnterButton1} label="YT Video" />
+      <Button onMouseEnter={handleMouseEnterButton2} label="YT Music" />
     </div>
   );
 }
