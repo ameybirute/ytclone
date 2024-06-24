@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './SearchPage.css';
 import VideoItem from './VideoItem';
-import { searchVideos, getTrendingVideos } from './youtubeApi'; // Import your API functions
+import { searchVideos, getTrendingVideos } from './youtubeApi';
 
 const SearchPage = () => {
   const { type } = useParams();
   const [query, setQuery] = useState('');
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState('');
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   useEffect(() => {
     const fetchTrendingVideos = async () => {
@@ -28,6 +29,7 @@ const SearchPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSearchPerformed(true);
     try {
       const results = await searchVideos(query);
       setVideos(results);
@@ -52,7 +54,7 @@ const SearchPage = () => {
         </form>
       </div>
       {error && <p className="error-message">{error}</p>}
-      <div className="video-list">
+      <div className={`video-list ${searchPerformed ? 'vertical-list' : ''}`}>
         {videos.map((item) => (
           <VideoItem key={item.id.videoId || item.id} item={item.snippet} />
         ))}
