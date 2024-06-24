@@ -1,0 +1,25 @@
+.video-item {
+  display: flex;
+  flex-direction: column;
+  color:white;
+}
+
+.video-item.list-item {
+  flex-direction: row;
+  align-items: center;
+}
+
+.video-item.list-item img {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.video-info {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.video-info.list-item {
+  margin-top: 0;
+}

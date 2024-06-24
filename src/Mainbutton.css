@@ -1,0 +1,9 @@
+.button{
+    background-color: rgb(235, 9, 9);
+    color:white;
+}
+
+.button:hover{
+    scale:102%;
+    cursor: pointer;
+}
