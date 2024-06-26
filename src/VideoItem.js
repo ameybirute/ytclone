@@ -2,17 +2,14 @@ import React from 'react';
 import './VideoItem.css';
 
 const VideoItem = ({ item, onClick }) => {
-  if (!item || !item.snippet) {
-    return null;
-  }
+  const { title, thumbnails, channelTitle } = item;
 
   return (
     <div className="video-item" onClick={onClick}>
-      <img src={item.snippet.thumbnails.high.url} alt={item.snippet.title} />
+      <img src={thumbnails.default.url} alt={title} />
       <div className="video-details">
-        <p className="video-title">{item.snippet.title}</p>
-        <p className="video-author">{item.snippet.channelTitle}</p>
-        <p className="video-views">{item.snippet.viewCount} views</p>
+        <div className="video-title">{title}</div>
+        <div className="video-meta">{channelTitle}</div>
       </div>
     </div>
   );

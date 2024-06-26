@@ -1,25 +1,31 @@
 .video-item {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  color:white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.video-item.list-item {
-  flex-direction: row;
-  align-items: center;
-}
-
-.video-item.list-item img {
-  width: 120px;
+.video-item img {
+  width: 100%;
   height: auto;
-  margin-right: 20px;
+  display: block;
 }
 
-.video-info {
-  margin-top: 10px;
+.video-details {
+  padding: 10px;
+}
+
+.video-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: white; /* Ensure the title text color is white */
+}
+
+.video-meta {
   font-size: 14px;
-}
-
-.video-info.list-item {
-  margin-top: 0;
+  color: #888;
 }

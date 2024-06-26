@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './SearchPage.css';
 import VideoItem from './VideoItem';
-import { searchVideos, getTrendingVideos } from './youtubeApi';
+import { searchVideos, getTrendingVideos } from './youtubeApi'; // Import your API functions
 
 const SearchPage = () => {
   const { type } = useParams();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [videos, setVideos] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const SearchPage = () => {
     try {
       const results = await searchVideos(query);
       setVideos(results);
+      setSearchClicked(true);
       setError('');
     } catch (err) {
       console.error('Error during search:', err.response ? err.response.data : err.message);
@@ -57,9 +59,9 @@ const SearchPage = () => {
         </form>
       </div>
       {error && <p className="error-message">{error}</p>}
-      <div className="video-list">
+      <div className={`video-list ${searchClicked ? 'vertical' : ''}`}>
         {videos.map((item) => (
-          <VideoItem key={item.id.videoId || item.id} item={item} onClick={() => handleVideoClick(item.id.videoId || item.id)} />
+          <VideoItem key={item.id.videoId || item.id} item={item.snippet} onClick={() => handleVideoClick(item.id.videoId || item.id)} />
         ))}
       </div>
     </div>
