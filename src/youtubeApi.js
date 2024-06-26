@@ -8,6 +8,8 @@ export const searchVideos = async (query) => {
       q: query,
       key: API_KEY,
       type: 'video',
+      maxResults: 20,
+
     },
   });
   return response.data.items;
