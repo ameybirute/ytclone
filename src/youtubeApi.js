@@ -1,41 +1,43 @@
 import axios from 'axios';
 
 const API_KEY = 'AIzaSyDL5uwiUwR5R9D-BhqhVqK7bcf3rM1wxms';
+const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
 export const searchVideos = async (query) => {
-  const params = {
-    part: 'snippet',
-    maxResults: 40,
-    q: query,
-    type: 'video',
-    key: API_KEY,
-  };
-
-  try {
-    console.log('Request params:', params);
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/search', { params });
-    return response.data.items;
-  } catch (error) {
-    console.error('Error searching videos:', error.response ? error.response.data : error.message);
-    throw error;
-  }
+  const response = await axios.get(`${BASE_URL}/search`, {
+    params: {
+      part: 'snippet',
+      q: query,
+      type: 'video',
+      maxResults: 10,
+      key: API_KEY,
+    },
+  });
+  return response.data.items;
 };
 
 export const getTrendingVideos = async () => {
-  const params = {
-    part: 'snippet',
-    chart: 'mostPopular',
-    maxResults: 40,
-    regionCode: 'US',
-    key: API_KEY,
-  };
+  const response = await axios.get(`${BASE_URL}/videos`, {
+    params: {
+      part: 'snippet',
+      chart: 'mostPopular',
+      maxResults: 10,
+      regionCode: 'US',
+      key: API_KEY,
+    },
+  });
+  return response.data.items;
+};
 
-  try {
-    console.log('Request params:', params);
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/videos', { params });
-    return response.data.items;
-  } catch (error) {
-    console.error('Error fetching trending videos:', error.response ? error.response.data : error.message);
-    throw error;
-  }
+export const getRelatedVideos = async (videoId) => {
+  const response = await axios.get(`${BASE_URL}/search`, {
+    params: {
+      part: 'snippet',
+      relatedToVideoId: videoId,
+      type: 'video',
+      maxResults: 10,
+      key: API_KEY,
+    },
+  });
+  return response.data.items;
 };

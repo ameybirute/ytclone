@@ -5,6 +5,7 @@ import ytm from './ytm.png';
 import './App.css';
 import Button from './Mainbutton';
 import SearchPage from './SearchPage';
+import VideoPlayerPage from './VideoPlayerPage';
 
 function HomePage() {
   const [imageSrc, setImageSrc] = React.useState(ytv);
@@ -33,6 +34,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search/:type" element={<SearchPage />} />
+        <Route path="/video/:videoId" element={<VideoPlayerPage />} />
+
       </Routes>
     </Router>
   );

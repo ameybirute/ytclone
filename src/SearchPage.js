@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './SearchPage.css';
 import VideoItem from './VideoItem';
 import { searchVideos, getTrendingVideos } from './youtubeApi';
 
 const SearchPage = () => {
   const { type } = useParams();
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState('');
-  const [searchPerformed, setSearchPerformed] = useState(false);
 
   useEffect(() => {
     const fetchTrendingVideos = async () => {
@@ -29,7 +29,6 @@ const SearchPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSearchPerformed(true);
     try {
       const results = await searchVideos(query);
       setVideos(results);
@@ -38,6 +37,10 @@ const SearchPage = () => {
       console.error('Error during search:', err.response ? err.response.data : err.message);
       setError('Failed to search videos. Please check your network or API key.');
     }
+  };
+
+  const handleVideoClick = (videoId) => {
+    navigate(`/video/${videoId}`);
   };
 
   return (
@@ -54,9 +57,9 @@ const SearchPage = () => {
         </form>
       </div>
       {error && <p className="error-message">{error}</p>}
-      <div className={`video-list ${searchPerformed ? 'vertical-list' : ''}`}>
+      <div className="video-list">
         {videos.map((item) => (
-          <VideoItem key={item.id.videoId || item.id} item={item.snippet} />
+          <VideoItem key={item.id.videoId || item.id} item={item} onClick={() => handleVideoClick(item.id.videoId || item.id)} />
         ))}
       </div>
     </div>
