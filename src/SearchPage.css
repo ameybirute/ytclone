@@ -46,6 +46,14 @@
   }
 }
 
+@media (min-width: 769px) {
+  .video-list.vertical {
+    width: 50%; /* Adjusted width for desktop screens */
+    margin: 0 auto; /* Horizontally center the element */
+  }
+}
+
+
 .video-item {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -74,3 +82,4 @@
   font-size: 14px;
   color: #888;
 }
+
