@@ -6,7 +6,7 @@ const VideoItem = ({ item, onClick }) => {
 
   return (
     <div className="video-item" onClick={onClick}>
-      <img src={thumbnails.default.url} alt={title} />
+      <img src={thumbnails.high.url} alt={title} />
       <div className="video-details">
         <div className="video-title">{title}</div>
         <div className="video-meta">{channelTitle}</div>
