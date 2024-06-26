@@ -9,7 +9,7 @@ export const searchVideos = async (query) => {
       part: 'snippet',
       q: query,
       type: 'video',
-      maxResults: 10,
+      maxResults: 40,
       key: API_KEY,
     },
   });
@@ -21,7 +21,7 @@ export const getTrendingVideos = async () => {
     params: {
       part: 'snippet',
       chart: 'mostPopular',
-      maxResults: 10,
+      maxResults: 40,
       regionCode: 'US',
       key: API_KEY,
     },
@@ -35,7 +35,7 @@ export const getRelatedVideos = async (videoId) => {
       part: 'snippet',
       relatedToVideoId: videoId,
       type: 'video',
-      maxResults: 10,
+      maxResults: 40,
       key: API_KEY,
     },
   });
