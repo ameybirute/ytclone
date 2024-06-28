@@ -133,4 +133,8 @@
   .content {
     margin-left: 250px; /* Adjust content margin for sidebar width */
   }
+
+  .sidebar:not(.expanded) {
+    transform: translateX(-100%);
+  }
 }
