@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [videos, setVideos] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
   const [error, setError] = useState('');
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth >= 769);
 
   useEffect(() => {
     const fetchTrendingVideos = async () => {
