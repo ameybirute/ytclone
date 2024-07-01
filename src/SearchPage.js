@@ -81,7 +81,7 @@ const SearchPage = () => {
               onChange={handleInputChange}
               placeholder="Search for videos or music..."
             />
-            <button type="submit">Search</button>
+            <button type="submit">🔍</button>
           </form>
         </div>
         {error && <p className="error-message">{error}</p>}
