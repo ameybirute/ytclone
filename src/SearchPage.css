@@ -58,11 +58,12 @@
   width: 100%;
   padding: 20px; /* Add padding to content */
   margin-left: 250px; /* Adjust content margin for sidebar width */
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 .search-page.sidebar-hidden .content {
   margin-left: 0;
+  width: calc(100% - 20px); /* Expand content width to fill available space */
 }
 
 .search-bar {
@@ -104,6 +105,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  transition: all 0.3s ease; /* Add transition for smooth animation */
 }
 
 .video-list.vertical {
@@ -126,6 +128,11 @@
 
   .content {
     margin-left: 0;
+    width: 100%; /* Ensure full width on smaller screens */
+  }
+
+  .video-list {
+    grid-template-columns: 1fr; /* One video per row on mobile */
   }
 }
 
@@ -136,6 +143,7 @@
 
   .search-page.sidebar-hidden .content {
     margin-left: 0; /* Content should expand when sidebar is hidden */
+    width: calc(100% - 20px); /* Expand content width */
   }
 
   .content {
