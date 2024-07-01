@@ -1,7 +1,8 @@
+/* General styles for the search page layout */
 .search-page {
   display: flex;
-  flex-direction: column;
-  height: 100vh; /* Ensure full height */
+  height: 100vh;
+  transition: margin-left 0.3s ease;
 }
 
 .menu-icon {
@@ -10,8 +11,8 @@
   font-size: 24px;
   padding: 10px;
   position: fixed;
-  top: 20px; /* Adjust top position as needed */
-  left: 20px; /* Adjust left position as needed */
+  top: 20px;
+  left: 20px;
   z-index: 1000; /* Ensure icon is above other content */
 }
 
@@ -25,6 +26,7 @@
   left: 0;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  z-index: 999; /* Ensure sidebar is above other content */
 }
 
 .sidebar.expanded {
@@ -53,8 +55,14 @@
 .content {
   display: flex;
   flex-direction: column;
-  margin-left: 250px; /* Adjust content margin for sidebar width */
+  width: 100%;
   padding: 20px; /* Add padding to content */
+  margin-left: 250px; /* Adjust content margin for sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
+.search-page.sidebar-hidden .content {
+  margin-left: 0;
 }
 
 .search-bar {
@@ -103,10 +111,6 @@
 }
 
 @media (max-width: 768px) {
-  .content {
-    margin-left: 0;
-  }
-
   .menu-icon {
     display: block; /* Ensure menu icon is visible on mobile */
   }
@@ -119,22 +123,22 @@
   .sidebar.expanded {
     transform: translateX(0);
   }
+
+  .content {
+    margin-left: 0;
+  }
 }
 
 @media (min-width: 769px) {
   .menu-icon {
-    display: block; /* Keep menu icon visible on desktop */
+    display: block; /* Show menu icon on desktop */
   }
 
-  .sidebar {
-    transform: translateX(0);
+  .search-page.sidebar-hidden .content {
+    margin-left: 0; /* Content should expand when sidebar is hidden */
   }
 
   .content {
     margin-left: 250px; /* Adjust content margin for sidebar width */
-  }
-
-  .sidebar:not(.expanded) {
-    transform: translateX(-100%);
   }
 }

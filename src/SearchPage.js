@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [videos, setVideos] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
   const [error, setError] = useState('');
-  const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth >= 769);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true); // Initially visible on PC
 
   useEffect(() => {
     const fetchTrendingVideos = async () => {
@@ -24,21 +24,6 @@ const SearchPage = () => {
       }
     };
     fetchTrendingVideos();
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsSidebarVisible(false);
-      } else {
-        setIsSidebarVisible(true);
-      }
-    };
-
-    handleResize(); // Set initial state
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleInputChange = (e) => {
@@ -67,7 +52,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="search-page">
+    <div className={`search-page ${isSidebarVisible ? '' : 'sidebar-hidden'}`}>
       <div className="menu-icon" onClick={toggleSidebar}>
         <IoMdMenu />
       </div>
